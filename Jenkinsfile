@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        stage('Initialize'){
+         def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage('Verfiy Branch') {
             steps {
                 echo "$GIT_BRANCH"
@@ -11,7 +15,7 @@ pipeline {
             steps {
                 sh script: 'cd azure-vote/'
                 sh script: 'docker build -t jenkins-pipeline -f DockerFile .'
-                sh script:'cd.. '
+                sh script:'cd..'
             }
         }
     }
