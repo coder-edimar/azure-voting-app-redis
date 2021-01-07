@@ -1,8 +1,8 @@
 pipeline {
-    agent {
-        docker { image: 'node:14-alpine' }
-    }
+    agent any
+
     stages {
+        
         stage('Verfiy Branch') {
             steps {
                 echo "$GIT_BRANCH"
